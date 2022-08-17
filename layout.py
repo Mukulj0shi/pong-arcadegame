@@ -18,7 +18,7 @@ class layout1():
             self.turtle_object.penup()
             self.turtle_object.goto(bat)
             self.turtle_object.setheading(90)
-            self.turtle_object.shapesize(1, 2)
+            self.turtle_object.shapesize(stretch_len=5, stretch_wid=1)
             self.turtle_object.showturtle()
             self.turtle_bat_object.append(self.turtle_object)
             print(self.turtle_bat_object)
@@ -54,7 +54,6 @@ class layout1():
             self.turtle_bat_object[1].backward(50)
 
 
-    def pong(self):
 
 
 
