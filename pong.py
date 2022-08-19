@@ -1,4 +1,5 @@
 from turtle import Turtle
+import time
 
 
 class Ball(Turtle):
@@ -10,6 +11,7 @@ class Ball(Turtle):
         self.penup()
         self.xmove = 10
         self.ymove = 10
+        self.new_speed = 0.1
         ## Question : How to identify and print this object in which we are working.
 
     def move_ball(self):
@@ -23,8 +25,18 @@ class Ball(Turtle):
 
     def bounce_back_left(self):
         self.xmove *= -1
+        self.new_speed *= 0.01
         #print(f"left {self.xmove},{self.ymove}")
 
     def bounce_back_right(self):
         self.xmove *= -1
         #print(f"right {self.xmove},{self.ymove}")
+
+    # Start game again once ball leaves the screen
+    def start_again(self):
+        self.hideturtle()
+        self.goto(0, 0)
+        self.new_speed = 0.1
+        self.showturtle()
+
+

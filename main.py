@@ -2,11 +2,13 @@ from turtle import Turtle,Screen
 from layout import Layout
 from pong import Ball
 import time
+from score import Score
 
 turtle_object = Turtle()
 screen_object = Screen()
 layout1_object = Layout()
 ball_object = Ball()
+score_object = Score()
 
 screen_object.tracer()
 screen_object.listen()
@@ -18,25 +20,29 @@ screen_object.onkey(layout1_object.rightdown, "Down")
 is_game_on = True
 
 while is_game_on:
-    time.sleep(0.1)
+    time.sleep(ball_object.new_speed)
     screen_object.update()
     ball_object.move_ball()
-    #print(ball_object.xcor())
+
+    # Ball bounces when ball touches the boundary.
     if ball_object.ycor() > 260 or ball_object.ycor() < -260:
         ball_object.bounce_ball()
-        print("Toched boundary")
-    if ball_object.distance(layout1_object.rightbat.position()) < 45 and ball_object.xcor() > 350:
-        #print("TRUE BRU")
+        print("Touched boundary")
+
+    # Ball hit right or left bat
+    if ball_object.distance(layout1_object.rightbat.position()) < 45 and ball_object.xcor() > 350 or ball_object.distance(layout1_object.leftbat.position()) < 45 and ball_object.xcor() < -350:
         ball_object.bounce_back_left()
-        print(layout1_object.rightbat.position())
-        print(ball_object.position())
-        print(f" distnce1:{ball_object.distance(layout1_object.rightbat.position())}")
+        print(ball_object.new_speed)
 
-    elif ball_object.xcor() > 390:
-        print(layout1_object.rightbat.position())
-        print(ball_object.position())
-        print(f" distnce2:{ball_object.distance(layout1_object.rightbat.position())}")
-
+    # Bring ball to center and start game again from winning side.
+    elif ball_object.xcor() > 360:
+        ball_object.start_again()
+        ball_object.bounce_back_left()
+        score_object.left_score()
+    elif ball_object.xcor() < -360:
+        ball_object.start_again()
+        ball_object.bounce_back_right()
+        score_object.right_score()
 
 screen_object.exitonclick()
 
