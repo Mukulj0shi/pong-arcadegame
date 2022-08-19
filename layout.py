@@ -1,6 +1,6 @@
 from turtle import Turtle,Screen
 
-bat_cordinate = [(-388, 0), (380, 0)]
+bat_cordinate = [(-350, 0), (350, 0)]
 
 class Layout():
     def __init__(self):
