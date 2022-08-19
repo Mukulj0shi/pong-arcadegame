@@ -1,0 +1,4 @@
+ elif layout1_object.leftbat.distance(ball_object) < 20: #and ball_object.xcor() > 340:
+        #print("TRUE BRU")
+        #print (ball_object.position())
+        ball_object.bounce_back_right()
